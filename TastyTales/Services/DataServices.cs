@@ -8,6 +8,41 @@ namespace TastyTales.Services
     {
         private Data.IRepository repository;
 
+        public async Task<IList<Category>> GetCategories()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string url = Utilities.Constants.baseURL + "categories.php";
+                HttpResponseMessage response = await client.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+
+                string json = await response.Content.ReadAsStringAsync();
+                JObject data = JObject.Parse(json);
+
+                if (!data.ContainsKey("categories") || data["categories"].Type == JTokenType.Null)
+                {
+                    return new List<Category>();
+                }
+                JArray categoriesJ = (JArray)data["categories"];
+                List<Category> categories = new List<Category>();
+                if (categoriesJ != null)
+                {
+                    foreach (var category in categoriesJ)
+                    {
+                        Category newCategory = new Category
+                        {
+                            Id = (int)category["idCategory"],
+                            CategoryName = (string)category["strCategory"],
+                            Thumbnail = (string)category["strCategoryThumb"]
+                        };
+
+                        categories.Add(newCategory);
+                    }
+                }
+                return categories;
+            }
+        }
+
         public Task<IList<Recipe>> GetLatestMeals()
         {
             throw new NotImplementedException();
@@ -17,7 +52,7 @@ namespace TastyTales.Services
         {
             using (HttpClient client = new HttpClient())
             {
-                string url = $"https://www.themealdb.com/api/json/v1/1/filter.php?c=Dessert";
+                string url = Utilities.Constants.baseURL + "filter.php?c=Dessert";
                 HttpResponseMessage response = await client.GetAsync(url);
                 response.EnsureSuccessStatusCode();
 
@@ -59,6 +94,10 @@ namespace TastyTales.Services
             }
         }
 
+        public Task<IList<Recipe>> GetRecipeByCategory(Category category)
+        {
+            throw new NotImplementedException();
+        }
 
         public async Task<IList<Recipe>> GetRecipesByName(string name)
         {
@@ -75,7 +114,7 @@ namespace TastyTales.Services
         {
             using (HttpClient client = new HttpClient())
             {
-                string url = $"https://www.themealdb.com/api/json/v1/1/search.php?s={name}";
+                string url = Utilities.Constants.baseURL + $"search.php?s={name}";
                 HttpResponseMessage response = await client.GetAsync(url);
                 response.EnsureSuccessStatusCode();
 

@@ -9,6 +9,6 @@ namespace TastyTales.Utilities
     public class Constants
     {
         public const string DatabaseFile = "Recipes.db";
-
+        public const string baseURL = "https://www.themealdb.com/api/json/v1/1/";
     }
 }
