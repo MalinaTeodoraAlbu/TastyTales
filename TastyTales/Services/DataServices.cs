@@ -8,11 +8,7 @@ namespace TastyTales.Services
         private Data.IRepository repository;
         public async Task<IList<Recipe>> GetRecipesByName(string name)
         {
-            var recipies = await repository.GetRecipesByName(name);
-            if (recipies.Count == 0)
-            {
-                recipies = await SearchName(name);
-            }
+            var recipies = await SearchName(name);
             return recipies;
         }
         private async Task<IList<Recipe>> SearchName(string name)
@@ -25,8 +21,12 @@ namespace TastyTales.Services
 
                 string json = await response.Content.ReadAsStringAsync();
                 JObject data = JObject.Parse(json);
-                JArray meals = (JArray)data["meals"];
 
+                if (!data.ContainsKey("meals") || data["meals"].Type == JTokenType.Null)
+                {
+                    return new List<Recipe>(); 
+                }
+                JArray meals = (JArray)data["meals"];
                 List<Recipe> recipes = new List<Recipe>();
                 if (meals != null)
                 {
@@ -63,7 +63,6 @@ namespace TastyTales.Services
                         recipes.Add(recipe);
                     }
                 }
-                await repository.SaveRecipes(recipes);
                 return recipes;
             }
         }
