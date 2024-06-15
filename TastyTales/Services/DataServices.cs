@@ -3,7 +3,7 @@ using TastyTales.Models;
 
 namespace TastyTales.Services
 {
-    internal class DataServices : IDataServices
+    public class DataServices : IDataServices
     {
         private Data.IRepository repository;
         public async Task<IList<Recipe>> GetRecipesByName(string name)

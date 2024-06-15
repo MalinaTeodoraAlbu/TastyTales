@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TastyTales.Services
 {
-    internal interface IDataServices
+    public interface IDataServices
     {
         Task<IList<Models.Recipe>> GetRecipesByName(string name);
     }
