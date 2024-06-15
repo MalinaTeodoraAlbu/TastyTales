@@ -2,10 +2,10 @@ namespace TastyTales.Views;
 
 public partial class HomePage : ContentPage
 {
-	public HomePage(ViewModels.ISearchRecipeViewModel viewModel)
+	public HomePage(ViewModels.ISearchRecipeViewModel vm)
 	{
 		InitializeComponent();
-        BindingContext = viewModel;
+        BindingContext = vm;
 	}
 
     private void ExitToolbarItem_Clicked(object sender, EventArgs e)

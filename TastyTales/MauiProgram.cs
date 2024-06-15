@@ -21,6 +21,7 @@ namespace TastyTales
             builder.Services.AddSingleton<Data.IRepository, Data.DatabaseRepository>();
             builder.Services.AddSingleton<Services.IDataServices, Services.DataServices>();
             builder.Services.AddTransient<ViewModels.ISearchRecipeViewModel, ViewModels.SearchRecipeViewModel>();
+            builder.Services.AddTransient<Views.HomePage>();
             return builder.Build();
         }
     }
