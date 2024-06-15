@@ -29,7 +29,7 @@
                         <StackLayout Margin="20,0,0,0"
                                  Orientation="Horizontal"
                                  HorizontalOptions="FillAndExpand">
-                            <Label Text="{Binding Area}"
+                            <Label Text="{Binding MealName}"
                                VerticalTextAlignment="Center"
                                HorizontalOptions="StartAndExpand" />
                             <Label Text="{Binding Category}"

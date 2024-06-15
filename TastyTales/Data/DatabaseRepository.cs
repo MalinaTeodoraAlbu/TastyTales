@@ -7,6 +7,16 @@ namespace TastyTales.Data
     {
         private SQLiteAsyncConnection connection;
 
+        private async Task Initialize()
+        {
+            if (connection is null)
+            {
+                connection = new SQLiteAsyncConnection(
+                    Path.Combine(FileSystem.AppDataDirectory, Utilities.Constants.DatabaseFile),
+                    SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.SharedCache);
+                await connection.CreateTableAsync<Models.Recipe>();
+            }
+        }
         public async Task<IList<Recipe>> GetRecipesByCategory(string name)
         {
             await Initialize();
@@ -27,15 +37,6 @@ namespace TastyTales.Data
             await connection.InsertAllAsync(items);
         }
 
-        private async Task Initialize()
-        {
-            if (connection == null)
-            {
-                connection = new SQLiteAsyncConnection(
-                    Path.Combine(FileSystem.AppDataDirectory, Utilities.Constants.DatabaseFile),
-                    SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.SharedCache);
-                await connection.CreateTableAsync<Models.Recipe>();
-            }
-        }
+        
     }
 }
