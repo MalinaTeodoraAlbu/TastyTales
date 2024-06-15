@@ -1,8 +1,8 @@
 namespace TastyTales.Views;
 
-public partial class HomePage : ContentPage
+public partial class SearchPage : ContentPage
 {
-	public HomePage(ViewModels.ISearchRecipeViewModel vm)
+	public SearchPage(ViewModels.ISearchRecipeViewModel vm)
 	{
 		InitializeComponent();
         BindingContext = vm;
