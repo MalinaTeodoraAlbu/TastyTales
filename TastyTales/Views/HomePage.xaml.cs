@@ -14,11 +14,11 @@ public partial class HomePage : ContentPage
 
     private async void SearchButton_Clicked(object sender, EventArgs e)
     {
-        await (BindingContext as ViewModels.ISearchNameViewModel).SearchName();
+        await (BindingContext as ViewModels.ISearchRecipeViewModel).SearchName();
     }
 
     private void Entry_TextChanged(object sender, TextChangedEventArgs e)
     {
-        (BindingContext as ViewModels.ISearchNameViewModel).ClearResults();
+        (BindingContext as ViewModels.ISearchRecipeViewModel).ClearResults();
     }
 }

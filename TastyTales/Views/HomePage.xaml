@@ -21,7 +21,7 @@
         <ActivityIndicator IsRunning="{Binding Busy}"
                            IsVisible="{Binding Busy}"/>
         <ListView Margin="20"
-              ItemsSource="{Binding Results}"
+              ItemsSource="{Binding Recipes}"
               IsVisible="{Binding ResultsFound}">
             <ListView.ItemTemplate>
                 <DataTemplate>
