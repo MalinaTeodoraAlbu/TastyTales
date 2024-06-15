@@ -4,6 +4,7 @@ namespace TastyTales.Models
 {
     public class Recipe
     {
+       
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string MealName { get; set; }
@@ -18,7 +19,6 @@ namespace TastyTales.Models
 
         public List<String> Ingredients { get; set; }
         public List<String> Measure {  get; set; }
-        
 
 
     }

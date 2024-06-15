@@ -18,7 +18,8 @@ namespace TastyTales
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-
+            builder.Services.AddSingleton<Data.IRepository, Data.DatabaseRepository>();
+            builder.Services.AddSingleton<Services.IDataServices, Services.DataServices>();
             return builder.Build();
         }
     }
