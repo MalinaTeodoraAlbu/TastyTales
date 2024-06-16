@@ -22,10 +22,12 @@ namespace TastyTales
             builder.Services.AddSingleton<Services.IDataServices, Services.DataServices>();
             builder.Services.AddTransient<ViewModels.ISearchRecipeViewModel, ViewModels.SearchRecipeViewModel>();
             builder.Services.AddTransient<ViewModels.IMainPage, ViewModels.MainPage>();
+            builder.Services.AddTransient<ViewModels.ICategoriesPageViewModel, ViewModels.CategoriesPage>();
             builder.Services.AddTransient<ViewModels.ICategoryPageViewModel, ViewModels.CategoryPage>();
             builder.Services.AddTransient<Views.SearchPage>();
             builder.Services.AddTransient<Views.HomePage>();
-            builder.Services.AddTransient<Views.CategoriesPage>();
+            builder.Services.AddTransient<Views.CategoriesPageUI>();
+            builder.Services.AddTransient<Views.CategoryPageUI>();
             return builder.Build();
         }
     }

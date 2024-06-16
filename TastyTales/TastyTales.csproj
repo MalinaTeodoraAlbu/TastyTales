@@ -66,13 +66,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\CategoriesPageUI.xaml.cs">
+	    <DependentUpon>CategoriesPageUI.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\CategoryPageUI.xaml.cs">
+	    <DependentUpon>CategoryPageUI.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\SearchPage.xaml.cs">
 	    <DependentUpon>SearchPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\CategoriesPage.xaml">
+	  <MauiXaml Update="Views\CategoriesPageUI.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CategoryPageUI.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\HomePage.xaml">

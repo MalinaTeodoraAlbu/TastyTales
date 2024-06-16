@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace TastyTales.ViewModels
 {
-    public interface IMainPage : INotifyPropertyChanged
+    public interface ICategoriesPageViewModel : INotifyPropertyChanged
     {
-        IList<Models.Recipe> PopularDeserts { get; }
+        IList<Models.Category> Categories { get; }
     }
 }

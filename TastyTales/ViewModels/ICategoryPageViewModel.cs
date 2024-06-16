@@ -9,6 +9,7 @@ namespace TastyTales.ViewModels
 {
     public interface ICategoryPageViewModel : INotifyPropertyChanged
     {
-        IList<Models.Category> Categories { get; }
+        IList<Models.Recipe> RecipesByCategory { get; }
+        Models.Category SelectedCategory { get; }
     }
 }
