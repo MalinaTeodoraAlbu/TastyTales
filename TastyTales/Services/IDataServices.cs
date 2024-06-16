@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TastyTales.Models;
 
 namespace TastyTales.Services
 {
@@ -14,5 +15,6 @@ namespace TastyTales.Services
         Task<IList<Models.Recipe>> GetRecommendedMeals();
         Task<IList<Models.Category>> GetCategories();
         Task<IList<Models.Recipe>> GetRecipeByCategory(Models.Category category);
+        Task<Recipe> GetRecipe(int id);
     }
 }

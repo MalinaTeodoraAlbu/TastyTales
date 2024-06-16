@@ -1,14 +1,15 @@
 using TastyTales.Models;
+using TastyTales.ViewModels;
 
 namespace TastyTales.Views;
 
 public partial class RecipePage : ContentPage
 {
-    public Recipe Recipe { get; set; }
-    public RecipePage(Recipe recipe)
+    public RecipePage(IRecipeVM vm)
     {
         InitializeComponent();
-        Recipe = recipe;
-        BindingContext = Recipe;
+        BindingContext = vm;
     }
+
+
 }

@@ -94,6 +94,64 @@ namespace TastyTales.Services
             }
         }
 
+        public async Task<Recipe> GetRecipe(int id)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    string url = $"https://www.themealdb.com/api/json/v1/1/lookup.php?i={id}";
+                    HttpResponseMessage response = await client.GetAsync(url);
+                    response.EnsureSuccessStatusCode();
+
+                    string json = await response.Content.ReadAsStringAsync();
+                    JObject data = JObject.Parse(json);
+
+                    if (!data.ContainsKey("meals") || data["meals"].Type == JTokenType.Null || data["meals"].Count() == 0)
+                    {
+                        return null; 
+                    }
+
+                    JToken meal = data["meals"][0]; 
+
+                    Recipe recipe = new Recipe
+                    {
+                        Id = (int)meal["idMeal"],
+                        MealName = (string)meal["strMeal"],
+                        Category = (string)meal["strCategory"],
+                        Area = (string)meal["strArea"],
+                        Instructions = (string)meal["strInstructions"],
+                        MealThum = (string)meal["strMealThumb"],
+                        Tags = (string)meal["strTags"],
+                        StrYoutube = (string)meal["strYoutube"],
+                        Ingredients = new List<string>(),
+                        Measure = new List<string>()
+                    };
+
+                    for (int i = 1; i <= 20; i++)
+                    {
+                        string ingredient = (string)meal[$"strIngredient{i}"];
+                        string measure = (string)meal[$"strMeasure{i}"];
+                        if (!string.IsNullOrEmpty(ingredient))
+                        {
+                            recipe.Ingredients.Add(ingredient);
+                        }
+                        if (!string.IsNullOrEmpty(measure))
+                        {
+                            recipe.Measure.Add(measure);
+                        }
+                    }
+
+                    return recipe;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error fetching recipe: {ex.Message}");
+                    return null;
+                }
+            }
+        }
+
         public async Task<IList<Recipe>> GetRecipeByCategory(Category category)
         {
             using (HttpClient client = new HttpClient())
