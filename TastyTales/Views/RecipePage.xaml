@@ -1,0 +1,10 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TastyTales.Views.RecipePage"
+             Title="Recipe Details">
+    <StackLayout Padding="10">
+        <Label Text="{Binding MealName}" FontSize="Title" />
+        <Image Source="{Binding MealThum}" Aspect="AspectFill" HeightRequest="150" />
+        <Label Text="{Binding Description}" FontSize="Body" />
+    </StackLayout>
+</ContentPage>
