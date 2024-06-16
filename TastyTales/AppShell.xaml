@@ -9,7 +9,17 @@
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:Views.CategoriesPage}"
+        ContentTemplate="{DataTemplate local:Views.CategoriesPageUI}"
         Route="HomePage" />
+
+    <ShellContent
+        Title="Categories"
+        ContentTemplate="{DataTemplate local:Views.CategoriesPageUI}"
+        Route="CategoriesPage" />
+
+    <ShellContent
+        Title="Category"
+        ContentTemplate="{DataTemplate local:Views.CategoryPageUI}"
+        Route="CategoryPage" />
 
 </Shell>

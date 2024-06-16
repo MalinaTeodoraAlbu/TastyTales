@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using TastyTales.Models;
 using TastyTales.Services;
 
@@ -14,30 +9,60 @@ namespace TastyTales.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         private readonly IDataServices service;
-        
-        private IList<Category> categories;
 
-        public IList<Category> Categories
+        private IList<Recipe> recipes;
+
+        private Category category;
+
+        private bool busy = false;
+
+        public IList<Recipe> RecipesByCategory
         {
-            get { return categories; }
+            get { return recipes; }
             set
             {
-                categories = value;
-                OnPropertyChanged(nameof(Categories)); // Corrected property name here
+                recipes = value;
+                OnPropertyChanged(nameof(RecipesByCategory)); // Corrected property name here
             }
         }
 
-        public CategoryPage(IDataServices service)
+        public Category SelectedCategory
+        {
+            get { return category; }
+            set
+            {
+                category = value;
+                OnPropertyChanged(nameof(SelectedCategory));
+            }
+        }
+
+        public bool Busy
+        {
+            get
+            {
+                return busy;
+            }
+            private set
+            {
+                busy = value;
+                OnPropertyChanged(nameof(Busy));
+            }
+        }
+
+        public CategoryPage(IDataServices service, Category category)
         {
             this.service = service;
-            Categories = new List<Category>();
-
+            this.category = category;
+            RecipesByCategory = new List<Recipe>();
+            
             LoadDataAsync();
         }
 
         private async Task LoadDataAsync()
         {
-            Categories = await service.GetCategories();
+            Busy = true;
+            RecipesByCategory = await service.GetRecipeByCategory(SelectedCategory);
+            Busy = false;
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
