@@ -22,7 +22,7 @@ namespace TastyTales.ViewModels
             set
             {
                 recipes = value;
-                OnPropertyChanged(nameof(RecipesByCategory)); // Corrected property name here
+                OnPropertyChanged(nameof(RecipesByCategory));
             }
         }
 

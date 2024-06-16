@@ -18,7 +18,7 @@ namespace TastyTales.ViewModels
             set
             {
                 categories = value;
-                OnPropertyChanged(nameof(Categories)); // Corrected property name here
+                OnPropertyChanged(nameof(Categories));
             }
         }
 

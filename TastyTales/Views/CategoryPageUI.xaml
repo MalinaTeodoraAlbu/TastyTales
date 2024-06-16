@@ -24,7 +24,13 @@
                          VerticalOptions="FillAndExpand">
                             <Image Source="{Binding MealThum}"
                        Aspect="AspectFill"
-                       HeightRequest="150" />
+                       HeightRequest="150">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Tapped="OnImageTapped" 
+                                        CommandParameter="{Binding .}" />
+                                </Image.GestureRecognizers>
+                            </Image>
 
                             <Label Text="{Binding MealName}"
                        FontAttributes="Bold"

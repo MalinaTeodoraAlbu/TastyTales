@@ -16,4 +16,8 @@
         Title="Recipe"
         ContentTemplate="{DataTemplate local:Views.RecipePage}"
         Route="RecipePage" />
+    <ShellContent
+     Title="Recipe"
+     ContentTemplate="{DataTemplate local:Views.CategoriesPageUI}"
+     Route="CategoriesPageUI" />
 </Shell>

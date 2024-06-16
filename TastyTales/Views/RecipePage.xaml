@@ -2,9 +2,204 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TastyTales.Views.RecipePage"
              Title="Recipe Details">
-    <StackLayout Padding="10">
-        <Label Text="{Binding MealName}" FontSize="Title" />
-        <Image Source="{Binding MealThum}" Aspect="AspectFill" HeightRequest="150" />
-        <Label Text="{Binding Description}" FontSize="Body" />
-    </StackLayout>
+    
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="20">
+                <!-- Image and Text Layout -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="{Binding Recipe.MealName}"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           Grid.Column="0"/>
+
+                    <Button Text="❤️"
+                            FontSize="24"
+                            TextColor="White"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            Grid.Column="1"/>
+                </Grid>
+                <Grid>
+                    <!-- Image Column -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Frame around Image with Shadow and Color -->
+                    <Frame Grid.Column="0"
+                           CornerRadius="10"
+                           HasShadow="True"
+                           BackgroundColor="#FFE6EEF5"
+                           Padding="5"
+                           Margin="0,0,10,0">
+                        <Image Source="{Binding Recipe.MealThum}"
+                               Aspect="AspectFill"
+                               HeightRequest="200"
+                               WidthRequest="200"/>
+                    </Frame>
+
+                    <!-- Text Column -->
+                    <StackLayout Grid.Column="1" Margin="10,0,0,0">
+                        <!-- Title -->
+                      
+                        <!-- Category -->
+                        <Label Text="{Binding Recipe.Category, StringFormat='Category: {0}'}"
+                               FontSize="18"
+                               Margin="0,5,0,0"/>
+
+                        <!-- Area -->
+                        <Label Text="{Binding Recipe.Area}"
+                               FontSize="18"
+                               Margin="0,5,0,0"/>
+                        
+                    </StackLayout>
+                </Grid>
+
+                <!-- Ingredients and Measures Table -->
+                <Label Text="Instructions:"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   Margin="0,10,0,10"/>
+                <!-- Instructions -->
+                <Label Text="{Binding Recipe.Instructions}"
+                       FontSize="16"
+                       Margin="0,20,0,20"/>
+
+                <!-- Ingredients and Measures Table -->
+                <Label Text="Ingredients and Measures:"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       Margin="0,10,0,10"/>
+
+                <TableView Intent="Form">
+                    <TableRoot>
+                        <TableSection>
+                            <!-- Header Row -->
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="Ingredients" Grid.Column="0" FontAttributes="Bold"/>
+                                    <Label Text="Measures" Grid.Column="1" FontAttributes="Bold"/>
+                                </Grid>
+                            </ViewCell>
+   
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Recipe.Ingredients[0]}" Grid.Column="0" />
+                                    <Label Text="{Binding Recipe.Measure[0]}" Grid.Column="1" />
+                                </Grid>
+                            </ViewCell>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Recipe.Ingredients[1]}" Grid.Column="0" />
+                                    <Label Text="{Binding Recipe.Measure[1]}" Grid.Column="1" />
+                                </Grid>
+                            </ViewCell>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Recipe.Ingredients[2]}" Grid.Column="0" />
+                                    <Label Text="{Binding Recipe.Measure[2]}" Grid.Column="1" />
+                                </Grid>
+                            </ViewCell>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Recipe.Ingredients[3]}" Grid.Column="0" />
+                                    <Label Text="{Binding Recipe.Measure[3]}" Grid.Column="1" />
+                                </Grid>
+                            </ViewCell>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Recipe.Ingredients[4]}" Grid.Column="0" />
+                                    <Label Text="{Binding Recipe.Measure[4]}" Grid.Column="1" />
+                                </Grid>
+                            </ViewCell>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Recipe.Ingredients[5]}" Grid.Column="0" />
+                                    <Label Text="{Binding Recipe.Measure[5]}" Grid.Column="1" />
+                                </Grid>
+                            </ViewCell>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Recipe.Ingredients[6]}" Grid.Column="0" />
+                                    <Label Text="{Binding Recipe.Measure[6]}" Grid.Column="1" />
+                                </Grid>
+                            </ViewCell>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Recipe.Ingredients[7]}" Grid.Column="0" />
+                                    <Label Text="{Binding Recipe.Measure[7]}" Grid.Column="1" />
+                                </Grid>
+                            </ViewCell>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Recipe.Ingredients[8]}" Grid.Column="0" />
+                                    <Label Text="{Binding Recipe.Measure[8]}" Grid.Column="1" />
+                                </Grid>
+                            </ViewCell>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Recipe.Ingredients[9]}" Grid.Column="0" />
+                                    <Label Text="{Binding Recipe.Measure[9]}" Grid.Column="1" />
+                                </Grid>
+                            </ViewCell>
+                            <!-- End of example rows -->
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
