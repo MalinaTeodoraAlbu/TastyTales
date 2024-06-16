@@ -19,7 +19,7 @@ namespace TastyTales.ViewModels
             set
             {
                 popularDeserts = value;
-                OnPropertyChanged(nameof(PopularDeserts)); // Corrected property name here
+                OnPropertyChanged(nameof(PopularDeserts)); 
             }
         }
 
