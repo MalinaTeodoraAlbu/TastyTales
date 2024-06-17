@@ -1,4 +1,5 @@
 
+using TastyTales.Data;
 using TastyTales.Models;
 using TastyTales.Services;
 using TastyTales.ViewModels;
@@ -23,7 +24,7 @@ namespace TastyTales.Views
 
             if (recipe != null)
             {
-                await Navigation.PushAsync(new RecipePage(new RecipeVM(recipe, new DataServices())));
+                await Navigation.PushAsync(new RecipePage(new RecipeVM(recipe, new DataServices(new DatabaseRepository()))));
             }
         }
     }

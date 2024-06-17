@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Xml.Linq;
+using TastyTales.Data;
 using TastyTales.Models;
 
 namespace TastyTales.Services
@@ -7,6 +8,11 @@ namespace TastyTales.Services
     public class DataServices : IDataServices
     {
         private Data.IRepository repository;
+
+        public DataServices(IRepository repository)
+        {
+            this.repository = repository;
+        }
 
         public async Task<IList<Category>> GetCategories()
         {
@@ -206,6 +212,11 @@ namespace TastyTales.Services
         public Task<IList<Recipe>> GetRecommendedMeals()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task SaveFavoriteRecipe(Recipe recipe)
+        {
+            await repository.SaveFavoriteRecipe(recipe);
         }
 
         private async Task<IList<Recipe>> SearchName(string name)

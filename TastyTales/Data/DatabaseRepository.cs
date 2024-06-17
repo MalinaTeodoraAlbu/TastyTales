@@ -37,6 +37,12 @@ namespace TastyTales.Data
             await connection.InsertAllAsync(items);
         }
 
+        // adaugat de Cosmin
+        public async Task SaveFavoriteRecipe(Recipe recipe)
+        {
+            await Initialize();
+            await connection.InsertAsync(recipe);
+        }
         
     }
 }

@@ -24,7 +24,8 @@
                             TextColor="White"
                             HorizontalOptions="End"
                             VerticalOptions="Center"
-                            Grid.Column="1"/>
+                            Grid.Column="1"
+                            Command="{Binding SaveFavoriteCommand}"/>
                 </Grid>
                 <Grid>
                     <!-- Image Column -->

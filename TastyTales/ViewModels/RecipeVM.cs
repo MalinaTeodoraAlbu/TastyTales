@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TastyTales.Models;
 using TastyTales.Services;
 
@@ -17,6 +18,8 @@ namespace TastyTales.ViewModels
             this.recipe = recipe;    
             this.service = service;
             LoadDataAsync(recipe.Id);
+
+            SaveFavoriteCommand = new Command(async () => await SaveFavorite());
         }
 
         public Recipe Recipe
@@ -29,6 +32,7 @@ namespace TastyTales.ViewModels
             }
         }
 
+
         private async Task LoadDataAsync(int id)
         {
             Recipe = await service.GetRecipe(id); 
@@ -37,6 +41,12 @@ namespace TastyTales.ViewModels
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public ICommand SaveFavoriteCommand { get; }
+        async Task SaveFavorite()
+        {
+            await service.SaveFavoriteRecipe(recipe);
         }
     }
 }
