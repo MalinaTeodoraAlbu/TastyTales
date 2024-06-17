@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using Newtonsoft.Json;
+using SQLite;
 
 namespace TastyTales.Models
 {
@@ -16,9 +17,25 @@ namespace TastyTales.Models
         public string Tags { get; set; }
 
         public string StrYoutube { get; set; }
+               
+        [Ignore]
+        public List<string> Ingredients { get; set; } = new List<string>();
 
-        public List<String> Ingredients { get; set; }
-        public List<String> Measure {  get; set; }
+        [Ignore]
+        public List<string> Measure { get; set; } = new List<string>();
+
+        public string IngredientsJson
+        {
+           get => JsonConvert.SerializeObject(Ingredients);
+           set => Ingredients = string.IsNullOrEmpty(value) ? new List<string>() : JsonConvert.DeserializeObject<List<string>>(value);
+        }
+
+        public string MeasureJson
+        {
+            get => JsonConvert.SerializeObject(Measure);
+            set => Measure = string.IsNullOrEmpty(value) ? new List<string>() : JsonConvert.DeserializeObject<List<string>>(value);
+        }
+ 
 
 
     }

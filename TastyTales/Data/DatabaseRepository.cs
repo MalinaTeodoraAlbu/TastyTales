@@ -7,13 +7,24 @@ namespace TastyTales.Data
     {
         private SQLiteAsyncConnection connection;
 
+        public DatabaseRepository()
+        {
+            Initialize().Wait();
+        }
+
         private async Task Initialize()
         {
             if (connection is null)
             {
-                connection = new SQLiteAsyncConnection(
+               /* connection = new SQLiteAsyncConnection(
                     Path.Combine(FileSystem.AppDataDirectory, Utilities.Constants.DatabaseFile),
                     SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.SharedCache);
+                await connection.CreateTableAsync<Models.Recipe>();*/
+
+                string dbPath = Path.Combine(FileSystem.AppDataDirectory, Utilities.Constants.DatabaseFile);
+                Console.WriteLine($"Database path: {dbPath}");
+
+                var connection = new SQLiteAsyncConnection(dbPath, SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.SharedCache);
                 await connection.CreateTableAsync<Models.Recipe>();
             }
         }

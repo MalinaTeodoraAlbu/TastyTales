@@ -47,6 +47,7 @@ namespace TastyTales.ViewModels
         async Task SaveFavorite()
         {
             await service.SaveFavoriteRecipe(recipe);
+            Console.WriteLine("ce facem cumetre ? ");
         }
     }
 }
