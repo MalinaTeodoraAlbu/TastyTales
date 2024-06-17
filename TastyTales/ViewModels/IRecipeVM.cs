@@ -11,5 +11,7 @@ namespace TastyTales.ViewModels
      public interface IRecipeVM : INotifyPropertyChanged
     {
         Recipe Recipe { get; }
+
+        Task SaveRecipeAsync();
     }
 }

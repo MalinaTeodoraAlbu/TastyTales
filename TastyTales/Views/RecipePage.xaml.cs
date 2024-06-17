@@ -11,5 +11,9 @@ public partial class RecipePage : ContentPage
         BindingContext = vm;
     }
 
+    private async void SaveRecipeAsync(object sender, EventArgs e)
+    {
+        await (BindingContext as ViewModels.IRecipeVM).SaveRecipeAsync();
+    }
 
 }

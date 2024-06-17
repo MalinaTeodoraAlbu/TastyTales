@@ -15,6 +15,7 @@ namespace TastyTales.Data
                     Path.Combine(FileSystem.AppDataDirectory, Utilities.Constants.DatabaseFile),
                     SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.SharedCache);
                 await connection.CreateTableAsync<Models.Recipe>();
+                
             }
         }
         public async Task<IList<Recipe>> GetRecipesByCategory(string name)
@@ -37,6 +38,10 @@ namespace TastyTales.Data
             await connection.InsertAllAsync(items);
         }
 
-        
+        public async Task SaveRecipe(Recipe recipe)
+        {
+            await Initialize();
+            await connection.InsertAsync(recipe);
+        }
     }
 }

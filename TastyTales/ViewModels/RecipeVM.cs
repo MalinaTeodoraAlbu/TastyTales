@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TastyTales.Models;
 using TastyTales.Services;
 
@@ -17,6 +18,8 @@ namespace TastyTales.ViewModels
             this.recipe = recipe;    
             this.service = service;
             LoadDataAsync(recipe.Id);
+
+            
         }
 
         public Recipe Recipe
@@ -29,11 +32,18 @@ namespace TastyTales.ViewModels
             }
         }
 
+
         private async Task LoadDataAsync(int id)
         {
             Recipe = await service.GetRecipe(id); 
         }
 
+
+        public async Task SaveRecipeAsync()
+        {
+            await service.SaveRecipeToDb(recipe);
+           
+        }
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

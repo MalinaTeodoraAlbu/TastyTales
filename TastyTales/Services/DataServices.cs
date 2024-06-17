@@ -86,11 +86,12 @@ namespace TastyTales.Services
 
                         Recipe recipe = new Recipe
                         {
-                           
+                            Id = (int)meal["idMeal"],
                             MealName = (string)meal["strMeal"],
                             MealThum = (string)meal["strMealThumb"],
                         };
                         recipes.Add(recipe);
+                        
                         count++;
                     }
                 }
@@ -211,6 +212,46 @@ namespace TastyTales.Services
         public Task<IList<Recipe>> GetRecommendedMeals()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task SaveRecipeToDb(Recipe recipe1)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    string url = $"https://www.themealdb.com/api/json/v1/1/lookup.php?i={recipe1.Id}";
+                    HttpResponseMessage response = await client.GetAsync(url);
+                    response.EnsureSuccessStatusCode();
+
+                    string json = await response.Content.ReadAsStringAsync();
+                    JObject data = JObject.Parse(json);
+
+                    JToken meal = data["meals"][0];
+
+                    Recipe recipe = new Recipe
+                    {
+                        Id = (int)meal["idMeal"],
+                        MealName = (string)meal["strMeal"],
+                        Category = (string)meal["strCategory"],
+                        Area = (string)meal["strArea"],
+                        Instructions = (string)meal["strInstructions"],
+                        MealThum = (string)meal["strMealThumb"],
+                        Tags = (string)meal["strTags"],
+                        StrYoutube = (string)meal["strYoutube"],
+                        Ingredients = new List<string>(),
+                        Measure = new List<string>()
+                    };
+
+                    await repository.SaveRecipe(recipe);
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error fetching recipe: {ex.Message}");
+                }
+            }
+            
         }
 
         private async Task<IList<Recipe>> SearchName(string name)

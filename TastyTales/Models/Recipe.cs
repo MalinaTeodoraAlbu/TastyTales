@@ -1,11 +1,12 @@
-﻿using SQLite;
+﻿using Newtonsoft.Json;
+using SQLite;
 
 namespace TastyTales.Models
 {
     public class Recipe
     {
-       
-        [PrimaryKey, AutoIncrement]
+
+        [PrimaryKey]
         public int Id { get; set; }
         public string MealName { get; set; }
         public string Category { get; set; }
@@ -17,8 +18,24 @@ namespace TastyTales.Models
 
         public string StrYoutube { get; set; }
 
-        public List<String> Ingredients { get; set; }
-        public List<String> Measure {  get; set; }
+        [Ignore]
+        public List<string> Ingredients { get; set; } = new List<string>();
+
+        [Ignore]
+        public List<string> Measure { get; set; } = new List<string>();
+
+        public string IngredientsJson
+        {
+            get => JsonConvert.SerializeObject(Ingredients);
+            set => Ingredients = string.IsNullOrEmpty(value) ? new List<string>() : JsonConvert.DeserializeObject<List<string>>(value);
+        }
+
+        public string MeasureJson
+        {
+            get => JsonConvert.SerializeObject(Measure);
+            set => Measure = string.IsNullOrEmpty(value) ? new List<string>() : JsonConvert.DeserializeObject<List<string>>(value);
+        }
+
 
 
     }
