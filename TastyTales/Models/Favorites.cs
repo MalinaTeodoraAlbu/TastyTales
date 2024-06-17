@@ -2,6 +2,6 @@
 {
     public class Favorites
     {
-        public List<Recipe> Recipes { get; set; } = new List<Recipe>();
+        public Recipe Recipe { get; set; }
     }
 }

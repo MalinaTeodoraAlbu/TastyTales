@@ -20,11 +20,14 @@
                            Grid.Column="0"/>
 
                     <Button Text="❤️"
-                            FontSize="24"
-                            TextColor="White"
-                            HorizontalOptions="End"
-                            VerticalOptions="Center"
-                            Grid.Column="1"/>
+                    FontSize="24"
+                    TextColor="White"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Grid.Column="1"
+                    Command="{Binding SaveRecipeCommand}"
+                    />
+
                 </Grid>
                 <Grid>
                     <!-- Image Column -->

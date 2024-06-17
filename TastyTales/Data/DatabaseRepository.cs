@@ -1,5 +1,8 @@
-﻿using SQLite;
+﻿
+using SQLite;
+using TastyTales.Data;
 using TastyTales.Models;
+using static SQLite.SQLite3;
 
 namespace TastyTales.Data
 {
@@ -17,26 +20,18 @@ namespace TastyTales.Data
                 await connection.CreateTableAsync<Models.Recipe>();
             }
         }
-        public async Task<IList<Recipe>> GetRecipesByCategory(string name)
+
+
+        public async Task SaveRecipeToDB(Recipe recipe)
         {
             await Initialize();
-            return await connection.Table<Models.Recipe>()
-                .Where(item => item.Category.ToLower() == name.ToLower()).ToListAsync();
+            await connection.InsertAsync(recipe);
         }
 
-        public async Task<IList<Recipe>> GetRecipesByName(string name)
+        public async Task<IList<Recipe>> GetAllRecipesFromDB()
         {
             await Initialize();
-            return await connection.Table<Models.Recipe>()
-                .Where(item => item.MealName.ToLower() == name.ToLower()).ToListAsync();
+            return await connection.Table<Models.Recipe>().ToListAsync();
         }
-
-        public async Task SaveRecipes(IList<Recipe> items)
-        {
-            await Initialize();
-            await connection.InsertAllAsync(items);
-        }
-
-        
     }
 }

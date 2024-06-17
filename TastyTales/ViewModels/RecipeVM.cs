@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TastyTales.Models;
 using TastyTales.Services;
 
@@ -17,6 +18,9 @@ namespace TastyTales.ViewModels
             this.recipe = recipe;    
             this.service = service;
             LoadDataAsync(recipe.Id);
+
+            SaveRecipeCommand = new Command(async () => await service.SaveRecipeAsync(recipe));
+
         }
 
         public Recipe Recipe
@@ -28,6 +32,16 @@ namespace TastyTales.ViewModels
                 OnPropertyChanged(nameof(Recipe));
             }
         }
+
+        public ICommand SaveRecipeCommand { get; private set; }
+
+        private async Task SaveRecipeAsync()
+        {
+            await service.SaveRecipeAsync(recipe);
+            Console.WriteLine("SaveRecipeAsync method executed successfully.");
+            await Application.Current.MainPage.DisplayAlert("Save", "Recipe saved successfully!", "OK");
+        }
+
 
         private async Task LoadDataAsync(int id)
         {

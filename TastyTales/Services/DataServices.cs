@@ -8,6 +8,11 @@ namespace TastyTales.Services
     {
         private Data.IRepository repository;
 
+        public DataServices(Data.IRepository repository)
+        {
+            this.repository = repository;
+        }
+
         public async Task<IList<Category>> GetCategories()
         {
             using (HttpClient client = new HttpClient())
@@ -206,6 +211,11 @@ namespace TastyTales.Services
         public Task<IList<Recipe>> GetRecommendedMeals()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task SaveRecipeAsync(Recipe recipe)
+        {
+           await repository.SaveRecipeToDB(recipe);
         }
 
         private async Task<IList<Recipe>> SearchName(string name)

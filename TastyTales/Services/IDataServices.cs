@@ -16,5 +16,7 @@ namespace TastyTales.Services
         Task<IList<Models.Category>> GetCategories();
         Task<IList<Models.Recipe>> GetRecipeByCategory(Models.Category category);
         Task<Recipe> GetRecipe(int id);
+
+        Task SaveRecipeAsync(Recipe recipe);
     }
 }

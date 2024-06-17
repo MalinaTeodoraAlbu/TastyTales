@@ -2,6 +2,7 @@
 
 namespace TastyTales.Models
 {
+    [Table("recipes")]
     public class Recipe
     {
        

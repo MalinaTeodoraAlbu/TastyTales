@@ -8,8 +8,9 @@ using TastyTales.Models;
 
 namespace TastyTales.ViewModels
 {
-     public interface IRecipeVM : INotifyPropertyChanged
+    public interface IRecipeVM : INotifyPropertyChanged
     {
         Recipe Recipe { get; }
+
     }
 }

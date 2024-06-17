@@ -7,7 +7,7 @@
 
     <ScrollView>
         <StackLayout>
-            <Label Text="Popular Desserts" FontSize="Title" />
+            <Label Text="Popular Desserts" FontSize="Title" Margin="50,50,50,50"/>
             <CollectionView ItemsSource="{Binding PopularDeserts}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="4" />
@@ -34,7 +34,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Label Text="All Meals" FontSize="Title" />
+            <Label Text="All Meals" FontSize="Title" Margin="50,50,50,50"/>
             <CollectionView ItemsSource="{Binding PopularDeserts}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="4" />
