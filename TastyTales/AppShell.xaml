@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TastyTales"
-    Shell.FlyoutBehavior="Disabled"
+    Shell.FlyoutBehavior="Flyout"
     Title="TastyTales">
 
     <ShellContent
@@ -13,11 +13,11 @@
         Route="HomePage" />
 
     <ShellContent
-        Title="Recipe"
-        ContentTemplate="{DataTemplate local:Views.RecipePage}"
-        Route="RecipePage" />
+        Title="Search Recipe"
+        ContentTemplate="{DataTemplate local:Views.SearchPage}"
+        Route="SearchPage" />
     <ShellContent
-     Title="Recipe"
+     Title="Categories"
      ContentTemplate="{DataTemplate local:Views.CategoriesPageUI}"
      Route="CategoriesPageUI" />
 </Shell>

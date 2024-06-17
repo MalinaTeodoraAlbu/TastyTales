@@ -1,3 +1,7 @@
+using TastyTales.Models;
+using TastyTales.Services;
+using TastyTales.ViewModels;
+
 namespace TastyTales.Views;
 
 public partial class SearchPage : ContentPage
@@ -21,5 +25,16 @@ public partial class SearchPage : ContentPage
     private void Entry_TextChanged(object sender, TextChangedEventArgs e)
     {
         (BindingContext as ViewModels.ISearchRecipeViewModel).ClearResults();
+    }
+
+    private async void OnTextTapped(object sender, EventArgs e)
+    {
+        var view = sender as View;
+        var recipe = view?.BindingContext as Recipe;
+
+        if (recipe != null)
+        {
+            await Navigation.PushAsync(new RecipePage(new RecipeVM(recipe, new DataServices())));
+        }
     }
 }

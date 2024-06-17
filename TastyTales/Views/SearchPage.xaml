@@ -9,6 +9,7 @@
     <VerticalStackLayout>
         <Label 
             Text="Name"
+            Margin="20,20,20,20"
             HorizontalOptions="StartAndExpand" />
         <Entry
             Text="{Binding Name}"
@@ -29,12 +30,14 @@
                         <StackLayout Margin="20,0,0,0"
                                  Orientation="Horizontal"
                                  HorizontalOptions="FillAndExpand">
+                            
                             <Label Text="{Binding MealName}"
-                               VerticalTextAlignment="Center"
-                               HorizontalOptions="StartAndExpand" />
-                            <Label Text="{Binding Category}"
-                               VerticalTextAlignment="End"
-                               HorizontalOptions="End" />
+                                   VerticalTextAlignment="Center"
+                                   HorizontalOptions="StartAndExpand"
+                                   FontAttributes="Bold"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTextTapped" />
+                            </StackLayout.GestureRecognizers>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
