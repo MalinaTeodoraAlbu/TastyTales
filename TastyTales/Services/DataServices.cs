@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Xml.Linq;
 using TastyTales.Models;
+using static SQLite.SQLite3;
 
 namespace TastyTales.Services
 {
@@ -8,6 +9,10 @@ namespace TastyTales.Services
     {
         private Data.IRepository repository;
 
+        public DataServices(Data.IRepository repository)
+        {
+            this.repository = repository;
+        }
         public async Task<IList<Category>> GetCategories()
         {
             using (HttpClient client = new HttpClient())
@@ -81,7 +86,7 @@ namespace TastyTales.Services
 
                         Recipe recipe = new Recipe
                         {
-                            Id = (int)meal["idMeal"],
+                           
                             MealName = (string)meal["strMeal"],
                             MealThum = (string)meal["strMealThumb"],
                         };
@@ -89,7 +94,7 @@ namespace TastyTales.Services
                         count++;
                     }
                 }
-
+                
                 return recipes;
             }
         }

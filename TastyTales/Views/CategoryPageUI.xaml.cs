@@ -18,7 +18,7 @@ public partial class CategoryPageUI : ContentPage
 
         if (recipe != null)
         {
-            await Navigation.PushAsync(new RecipePage(new RecipeVM(recipe, new Services.DataServices())));
+            await Navigation.PushAsync(new RecipePage(new RecipeVM(recipe, new Services.DataServices(new Data.DatabaseRepository()))));
         }
     }
 }
