@@ -12,6 +12,7 @@ namespace TastyTales.ViewModels
 
         private readonly IDataServices service;
         private IList<Recipe> popularDeserts;
+        private IList<Recipe> allMeals;
 
         public IList<Recipe> PopularDeserts
         {
@@ -23,17 +24,28 @@ namespace TastyTales.ViewModels
             }
         }
 
+        public IList<Recipe> AllMeals
+        {
+            get { return allMeals; }
+            set
+            {
+                allMeals = value;
+                OnPropertyChanged(nameof(AllMeals));
+            }
+        }
+
         public MainPage(IDataServices service)
         {
             this.service = service;
             PopularDeserts = new List<Recipe>();
-
+            AllMeals = new List<Recipe>();
             LoadDataAsync();
         }
 
         private async Task LoadDataAsync()
         {
             PopularDeserts = await service.GetPopularDeserts();
+            AllMeals = await service.GetAllMeals();
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

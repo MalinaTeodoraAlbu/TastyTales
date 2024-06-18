@@ -10,5 +10,6 @@ namespace TastyTales.ViewModels
     public interface IMainPage : INotifyPropertyChanged
     {
         IList<Models.Recipe> PopularDeserts { get; }
+        IList<Models.Recipe> AllMeals { get; }
     }
 }

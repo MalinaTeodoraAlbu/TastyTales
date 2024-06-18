@@ -10,7 +10,7 @@
             <Label Text="Popular Desserts" FontSize="Title" Margin="50,50,50,50"/>
             <CollectionView ItemsSource="{Binding PopularDeserts}">
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" Span="4" />
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -35,9 +35,9 @@
             </CollectionView>
 
             <Label Text="All Meals" FontSize="Title" Margin="50,50,50,50"/>
-            <CollectionView ItemsSource="{Binding PopularDeserts}">
+            <CollectionView ItemsSource="{Binding AllMeals}">
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" Span="4" />
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>

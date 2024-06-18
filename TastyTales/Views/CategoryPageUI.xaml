@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TastyTales.Views.CategoryPageUI"
              Title="Category">
-    <VerticalStackLayout>
-        <StackLayout Orientation="Horizontal" Padding="10">
+    <StackLayout Orientation="Horizontal" Padding="10">
             <Frame HeightRequest="100" WidthRequest="100" CornerRadius="5" HasShadow="True" IsClippedToBounds="False">
                 <Image Source="{Binding SelectedCategory.Thumbnail}" />
             </Frame>
@@ -12,34 +11,33 @@
         </StackLayout>
         <ActivityIndicator IsRunning="{Binding Busy}"
                    IsVisible="{Binding Busy}"/>
-        <ScrollView>
-            <CollectionView ItemsSource="{Binding RecipesByCategory}">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical"
+    <ScrollView>
+        <CollectionView ItemsSource="{Binding RecipesByCategory}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
                          Span="4" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Padding="10"
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10"
                          VerticalOptions="FillAndExpand">
-                            <Image Source="{Binding MealThum}"
+                        <Image Source="{Binding MealThum}"
                        Aspect="AspectFill"
                        HeightRequest="150">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer 
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer 
                                         Tapped="OnImageTapped" 
                                         CommandParameter="{Binding .}" />
-                                </Image.GestureRecognizers>
-                            </Image>
+                            </Image.GestureRecognizers>
+                        </Image>
 
-                            <Label Text="{Binding MealName}"
+                        <Label Text="{Binding MealName}"
                        FontAttributes="Bold"
                        VerticalOptions="Center"
                        HorizontalOptions="Center" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </ScrollView>
-    </VerticalStackLayout>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ScrollView>
 </ContentPage>
