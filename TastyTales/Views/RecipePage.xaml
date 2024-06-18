@@ -22,9 +22,11 @@
                     <Button Text="❤️"
                             FontSize="24"
                             TextColor="White"
+                            BackgroundColor="{Binding SaveButtonBackgroundColor}"
                             HorizontalOptions="End"
                             VerticalOptions="Center"
-                            Grid.Column="1"/>
+                            Grid.Column="1"
+                            Clicked="SaveRecipeAsync"/>
                 </Grid>
                 <Grid>
                     <!-- Image Column -->

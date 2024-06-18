@@ -4,14 +4,13 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TastyTales.Models;
 
 namespace TastyTales.ViewModels
 {
-     public interface IRecipeVM : INotifyPropertyChanged
+    public interface IFavoritesVM : INotifyPropertyChanged
     {
-        Recipe Recipe { get; }
+        IList<Models.Recipe> FavRecipes { get; }
 
-        Task SaveRecipeAsync();
+        Task LoadDataAsync();
     }
 }

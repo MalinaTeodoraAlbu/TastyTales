@@ -1,3 +1,4 @@
+using TastyTales.Data;
 using TastyTales.Models;
 using TastyTales.Services;
 using TastyTales.ViewModels;
@@ -19,7 +20,7 @@ public partial class CategoriesPageUI : ContentPage
 
         if (category != null)
         {
-            await Navigation.PushAsync(new CategoryPageUI(new CategoryPage(new DataServices(), category)));
+            await Navigation.PushAsync(new CategoryPageUI(new CategoryPage(new DataServices(new DatabaseRepository()), category)));
         }
     }
 }

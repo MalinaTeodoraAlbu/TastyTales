@@ -10,11 +10,13 @@ namespace TastyTales.Services
     public interface IDataServices
     {
         Task<IList<Models.Recipe>> GetRecipesByName(string name);
-        Task<IList<Models.Recipe>> GetLatestMeals();
         Task<IList<Models.Recipe>> GetPopularDeserts();
-        Task<IList<Models.Recipe>> GetRecommendedMeals();
         Task<IList<Models.Category>> GetCategories();
         Task<IList<Models.Recipe>> GetRecipeByCategory(Models.Category category);
         Task<Recipe> GetRecipe(int id);
+
+        Task SaveRecipeToDb(Recipe recipe);
+
+        Task<IList<Models.Recipe>> GetAllRecipesDB();
     }
 }

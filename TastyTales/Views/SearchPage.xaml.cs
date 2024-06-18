@@ -34,7 +34,7 @@ public partial class SearchPage : ContentPage
 
         if (recipe != null)
         {
-            await Navigation.PushAsync(new RecipePage(new RecipeVM(recipe, new DataServices())));
+            await Navigation.PushAsync(new RecipePage(new RecipeVM(recipe, new DataServices(new Data.DatabaseRepository()))));
         }
     }
 }

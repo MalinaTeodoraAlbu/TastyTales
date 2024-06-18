@@ -25,11 +25,13 @@ namespace TastyTales
             builder.Services.AddTransient<ViewModels.ICategoriesPageViewModel, ViewModels.CategoriesPage>();
             builder.Services.AddTransient<ViewModels.ICategoryPageViewModel, ViewModels.CategoryPage>();
             builder.Services.AddTransient<ViewModels.IRecipeVM, ViewModels.RecipeVM>();
+            builder.Services.AddTransient<ViewModels.IFavoritesVM, ViewModels.FavoritesVM>();
             builder.Services.AddTransient<Views.SearchPage>();
             builder.Services.AddTransient<Views.HomePage>();
             builder.Services.AddTransient<Views.CategoriesPageUI>();
             builder.Services.AddTransient<Views.RecipePage>();
             builder.Services.AddTransient<Views.CategoryPageUI>();
+            builder.Services.AddTransient<Views.Favorites>();
             return builder.Build();
         }
     }
