@@ -36,7 +36,11 @@ namespace TastyTales.Data
         public async Task Delete(int id)
         {
             await Initialize();
-            await connection.DeleteAsync(id);
+            var recipe = await connection.FindAsync<Recipe>(id);
+            if (recipe != null)
+            {
+                await connection.DeleteAsync(recipe);
+            }
         }
 
         public async Task<IList<Recipe>> GetAllRecipesFromDB()
@@ -44,5 +48,13 @@ namespace TastyTales.Data
             await Initialize();
             return await connection.Table<Models.Recipe>().ToListAsync();
         }
+
+        public async Task<bool> IsFav(int id)
+        {
+            await Initialize();
+            var recipe = await connection.FindAsync<Models.Recipe>(id);
+            return recipe != null;
+        }
+
     }
 }

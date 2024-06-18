@@ -14,6 +14,11 @@ namespace TastyTales.Services
             this.repository = repository;
         }
 
+        public async Task DeleteRecipe(int id)
+        {
+            await repository.Delete(id);
+        }
+
         public async Task<IList<Recipe>> GetAllRecipesDB()
         {
             return await repository.GetAllRecipesFromDB();
@@ -208,6 +213,11 @@ namespace TastyTales.Services
         {
             var recipies = await SearchName(name);
             return recipies;
+        }
+
+        public async Task<bool> isFavorite(int id)
+        {
+            return await repository.IsFav(id);
         }
 
         public async Task SaveRecipeToDb(Recipe recipe1)
