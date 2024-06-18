@@ -20,4 +20,10 @@
      Title="Categories"
      ContentTemplate="{DataTemplate local:Views.CategoriesPageUI}"
      Route="CategoriesPageUI" />
+
+    <ShellContent
+     Title="Favorites"
+     ContentTemplate="{DataTemplate local:Views.Favorites}"
+     Route="Favorites" />
+
 </Shell>

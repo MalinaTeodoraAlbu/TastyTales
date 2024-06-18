@@ -4,10 +4,11 @@ namespace TastyTales.Data
 {
     public interface IRepository
     {
-        Task<IList<Models.Recipe>> GetRecipesByName(string name);
-        Task<IList<Models.Recipe>> GetRecipesByCategory(string name);
+        Task<IList<Recipe>> GetAllRecipesFromDB();
         Task SaveRecipes(IList<Models.Recipe> items);
 
         Task SaveRecipe(Recipe recipe);
+
+        Task Delete(int id);
     }
 }

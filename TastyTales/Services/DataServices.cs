@@ -13,6 +13,12 @@ namespace TastyTales.Services
         {
             this.repository = repository;
         }
+
+        public async Task<IList<Recipe>> GetAllRecipesDB()
+        {
+            return await repository.GetAllRecipesFromDB();
+        }
+
         public async Task<IList<Category>> GetCategories()
         {
             using (HttpClient client = new HttpClient())
@@ -46,11 +52,6 @@ namespace TastyTales.Services
                 }
                 return categories;
             }
-        }
-
-        public Task<IList<Recipe>> GetLatestMeals()
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<IList<Recipe>> GetPopularDeserts()
@@ -207,11 +208,6 @@ namespace TastyTales.Services
         {
             var recipies = await SearchName(name);
             return recipies;
-        }
-
-        public Task<IList<Recipe>> GetRecommendedMeals()
-        {
-            throw new NotImplementedException();
         }
 
         public async Task SaveRecipeToDb(Recipe recipe1)
