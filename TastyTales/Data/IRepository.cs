@@ -10,5 +10,7 @@ namespace TastyTales.Data
         Task SaveRecipe(Recipe recipe);
 
         Task Delete(int id);
+
+        Task<bool> IsFav(int id);
     }
 }

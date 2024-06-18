@@ -37,7 +37,8 @@ namespace TastyTales.ViewModels
 
         private async Task LoadDataAsync(int id)
         {
-            Recipe = await service.GetRecipe(id); 
+            Recipe = await service.GetRecipe(id);
+            IsRecipeSaved = await service.isFavorite(id);
         }
 
         private bool isRecipeSaved;
@@ -55,12 +56,21 @@ namespace TastyTales.ViewModels
             }
         }
 
-        public Color SaveButtonBackgroundColor => IsRecipeSaved ? Colors.Red : Colors.White;
+        public Color SaveButtonBackgroundColor => IsRecipeSaved ? Colors.LightSalmon : Colors.White;
 
         public async Task SaveRecipeAsync()
         {
-            await service.SaveRecipeToDb(recipe);
-            isRecipeSaved = true;
+            if (await service.isFavorite(recipe.Id))
+            {
+                await service.DeleteRecipe(recipe.Id);
+                IsRecipeSaved = false;
+            }
+            else
+            {
+                await service.SaveRecipeToDb(recipe);
+                IsRecipeSaved = true;
+            }
+
             OnPropertyChanged(nameof(SaveButtonBackgroundColor));
         }
         protected virtual void OnPropertyChanged(string propertyName)

@@ -14,6 +14,58 @@ namespace TastyTales.Services
             this.repository = repository;
         }
 
+        public async Task DeleteRecipe(int id)
+        {
+            await repository.Delete(id);
+        }
+
+        public async Task<IList<Recipe>> GetAllMeals()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string url = Utilities.Constants.baseURL + "filter.php?a=Italian";
+                HttpResponseMessage response = await client.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+
+                string json = await response.Content.ReadAsStringAsync();
+                JObject data = JObject.Parse(json);
+
+                if (!data.ContainsKey("meals") || data["meals"].Type == JTokenType.Null)
+                {
+                    return new List<Recipe>();
+                }
+
+                JArray meals = (JArray)data["meals"];
+                List<Recipe> recipes = new List<Recipe>();
+
+                int limit = 12;
+                int count = 0;
+
+                if (meals != null)
+                {
+                    foreach (var meal in meals)
+                    {
+                        if (count >= limit)
+                        {
+                            break;
+                        }
+
+                        Recipe recipe = new Recipe
+                        {
+                            Id = (int)meal["idMeal"],
+                            MealName = (string)meal["strMeal"],
+                            MealThum = (string)meal["strMealThumb"],
+                        };
+                        recipes.Add(recipe);
+
+                        count++;
+                    }
+                }
+
+                return recipes;
+            }
+        }
+
         public async Task<IList<Recipe>> GetAllRecipesDB()
         {
             return await repository.GetAllRecipesFromDB();
@@ -208,6 +260,11 @@ namespace TastyTales.Services
         {
             var recipies = await SearchName(name);
             return recipies;
+        }
+
+        public async Task<bool> isFavorite(int id)
+        {
+            return await repository.IsFav(id);
         }
 
         public async Task SaveRecipeToDb(Recipe recipe1)
